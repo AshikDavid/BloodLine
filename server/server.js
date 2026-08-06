@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors("https://blood-line-53z4.vercel.app/"));
+app.use(cors("https://blood-line-53z4.vercel.app"));
 app.use(express.json());
 
 app.get('/', (req, res) => {
