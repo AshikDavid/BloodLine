@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors("*"));
 app.use(express.json());
 app.use(require('morgan')('dev'))
 
@@ -39,7 +39,9 @@ app.use((req, res) => {
     data: null
   });
 });
-
+module.exports = app;
+if(process.env.development != 'Production'){
 app.listen(PORT, () => {
   console.log(`LifeLink API running on port ${PORT}`);
-});
+})
+}
