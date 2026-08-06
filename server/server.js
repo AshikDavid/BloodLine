@@ -38,7 +38,9 @@ app.use((req, res) => {
     data: null
   });
 });
-
+module.exports = app;
+if(process.env.development != 'Production'){
 app.listen(PORT, () => {
   console.log(`LifeLink API running on port ${PORT}`);
-});
+})
+}
