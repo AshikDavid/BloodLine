@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(require('morgan')('dev'))
 
 app.get('/', (req, res) => {
   res.json({

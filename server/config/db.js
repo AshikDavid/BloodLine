@@ -1,15 +1,17 @@
-const mongoose = require('mongoose');
+  const mongoose = require('mongoose');
 
-const connectDB = async () => {
-  try {
-    const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/lifelink';
+  const connectDB = async () => {
+    try {
+      const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/';
+      if(!mongoUri){
+        throw new Error("MONGODB_URI is missing from environmental variable")
+      }
+      const conn = await mongoose.connect(mongoUri);
+      console.log(`MongoDB connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.error(`MongoDB connection error: ${error.message}`);
+      process.exit(1);
+    }
+  };
 
-    const conn = await mongoose.connect(mongoUri);
-    console.log(`MongoDB connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
-    process.exit(1);
-  }
-};
-
-module.exports = connectDB;
+  module.exports = connectDB;
